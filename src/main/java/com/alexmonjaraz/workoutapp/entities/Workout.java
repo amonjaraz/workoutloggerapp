@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="workout")
@@ -21,6 +23,14 @@ public class Workout {
 	
 	@Column(name="note")
 	private String note;
+	
+	@NotNull(message="Is Required")
+	@Size(min=1, message="Is Required")
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="type")
+	private String type;
 	
 //	private List<WorkoutSet> sets;
 	
@@ -56,7 +66,23 @@ public class Workout {
 
 	@Override
 	public String toString() {
-		return "Workout [id=" + id + ", note=" + note + "]";
+		return "Workout [id=" + id + ", name=" + name + "]";
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 //	public List<WorkoutSet> getSets() {

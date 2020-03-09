@@ -5,12 +5,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import javax.servlet.ServletException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.alexmonjaraz.workoutapp.DAO.WorkoutDAO;
+import com.alexmonjaraz.workoutapp.entities.Workout;
 
 @Controller
 public class UserController {
@@ -32,7 +38,26 @@ public class UserController {
 		
 	}
 	
-
+	@GetMapping("/user/addWorkout")
+	private String addWorkout(Model model) {
+		
+		Workout workout = new Workout();
+		model.addAttribute("workout", workout);
+		return "add-workout";
+		
+	}
+	
+	@PostMapping("/user/saveWorkout")
+	private String saveWorkout(@Valid @ModelAttribute("workout") Workout workout, 
+								BindingResult bindingResult) {
+		System.out.println(workout);
+		if (bindingResult.hasErrors()) {
+			return "add-workout";
+		}
+		else {
+			return "redirect:/user";
+		}
+	}
 	
 	@GetMapping("/test")
 	private String test1() {
