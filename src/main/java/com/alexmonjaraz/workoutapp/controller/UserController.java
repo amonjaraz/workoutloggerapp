@@ -55,6 +55,7 @@ public class UserController {
 			return "add-workout";
 		}
 		else {
+			workoutDAO.saveWorkout(workout);
 			return "redirect:/user";
 		}
 	}

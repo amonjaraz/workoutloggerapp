@@ -2,6 +2,8 @@ package com.alexmonjaraz.workoutapp.DAO;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -25,6 +27,13 @@ public class WorkoutDAOImpl implements WorkoutDAO {
 		Workout foundWorkout = session.get(Workout.class, id);
 
 		return foundWorkout;
+	}
+
+	@Transactional
+	@Override
+	public void saveWorkout(@Valid Workout workout) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(workout);
 	}
 
 }
