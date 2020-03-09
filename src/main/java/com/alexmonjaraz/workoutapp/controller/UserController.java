@@ -3,6 +3,8 @@ package com.alexmonjaraz.workoutapp.controller;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.validation.Valid;
@@ -25,15 +27,11 @@ public class UserController {
 	private WorkoutDAO workoutDAO;
 	
 	@GetMapping("/user")
-	private String getUser() {
+	private String getUser(Model model) {
 
-		try {
-//			System.out.println(workoutDAO.getWorkout(99));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
+		List<Workout> workouts = workoutDAO.getWorkouts();
+		System.out.println(workouts);
+		model.addAttribute("workouts", workouts);
 		return "user";
 		
 	}

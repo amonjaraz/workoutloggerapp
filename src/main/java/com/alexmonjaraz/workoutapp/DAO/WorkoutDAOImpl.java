@@ -36,4 +36,13 @@ public class WorkoutDAOImpl implements WorkoutDAO {
 		session.saveOrUpdate(workout);
 	}
 
+	@Transactional
+	@Override
+	public List<Workout> getWorkouts() {
+		Session session = sessionFactory.getCurrentSession();
+		Query<Workout> query= session.createQuery("from Workout", Workout.class);
+		List<Workout> workouts = query.getResultList();
+		return workouts;
+	}
+
 }
