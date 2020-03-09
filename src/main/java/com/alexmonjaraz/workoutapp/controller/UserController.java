@@ -22,7 +22,7 @@ public class UserController {
 	private String getUser() {
 
 		try {
-			System.out.println(workoutDAO.getWorkout(99));
+//			System.out.println(workoutDAO.getWorkout(99));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -31,6 +31,8 @@ public class UserController {
 		return "user";
 		
 	}
+	
+
 	
 	@GetMapping("/test")
 	private String test1() {
