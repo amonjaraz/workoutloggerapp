@@ -23,7 +23,6 @@ public class WorkoutDAOImpl implements WorkoutDAO {
 	@Transactional
 	@Override
 	public Workout getWorkout(int id) {
-		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		Workout foundWorkout = session.get(Workout.class, id);
 
@@ -34,7 +33,6 @@ public class WorkoutDAOImpl implements WorkoutDAO {
 	@Override
 	public void saveWorkout(@Valid Workout workout) {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println("SAVE:" + workout.getSets());
 		session.saveOrUpdate(workout);
 	}
 
@@ -50,7 +48,6 @@ public class WorkoutDAOImpl implements WorkoutDAO {
 	@Transactional
 	@Override
 	public List<WorkoutSet> getWorkoutSets(int id) {
-		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
 		Workout foundWorkout = session.get(Workout.class, id);
 		List<WorkoutSet> workoutSets = foundWorkout.getSets();

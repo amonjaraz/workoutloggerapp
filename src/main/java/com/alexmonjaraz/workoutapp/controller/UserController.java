@@ -33,9 +33,6 @@ public class UserController {
 	private String getUser(Model model, Authentication auth) {
 
 		List<Workout> workouts = workoutDAO.getWorkouts();
-		System.out.println(workouts);
-		System.out.println(auth.getName());
-		System.out.println(auth.getPrincipal());
 		model.addAttribute("workouts", workouts);
 		return "user";
 		
@@ -80,8 +77,6 @@ public class UserController {
 		model.addAttribute("workoutSets", workoutSets);
 		
 		WorkoutSet workoutSet = new WorkoutSet();
-		
-		
 		model.addAttribute("workoutSet", workoutSet);
 		
 		return "workout-detail";
@@ -92,8 +87,7 @@ public class UserController {
 
 			@RequestParam("workoutId") int workoutId,
 			BindingResult bindingResult) {
-		System.out.println(workoutId);
-		System.out.println(workoutSet);
+
 		if (bindingResult.hasErrors()) {
 			return "workout-detail";
 		}
