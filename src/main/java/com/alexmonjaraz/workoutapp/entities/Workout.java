@@ -3,11 +3,15 @@ package com.alexmonjaraz.workoutapp.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,16 +36,18 @@ public class Workout {
 	@Column(name="type")
 	private String type;
 	
-//	private List<WorkoutSet> sets;
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="workout_id")
+	private List<WorkoutSet> sets;
 	
 	public Workout() {}
 	
-//	public void addSet(WorkoutSet newSet) {
-//		if (sets == null) {
-//			sets = new ArrayList<WorkoutSet>();
-//		}
-//		sets.add(newSet);
-//	}
+	public void addSet(WorkoutSet newSet) {
+		if (sets == null) {
+			sets = new ArrayList<WorkoutSet>();
+		}
+		sets.add(newSet);
+	}
 
 	public Workout(String note) {
 		this.note = note;
@@ -85,7 +91,7 @@ public class Workout {
 		this.type = type;
 	}
 
-//	public List<WorkoutSet> getSets() {
-//		return sets;
-//	}
+	public List<WorkoutSet> getSets() {
+		return sets;
+	}
 }

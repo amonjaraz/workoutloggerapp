@@ -20,8 +20,11 @@
 	
 	<ul>
 		<c:forEach var="tempWorkout" items="${workouts}">
-			<li>${tempWorkout.name} - ${tempWorkout.type}</li>
-			<button>Open</button>
+			<c:url var="detailLink" value="/user/workout">
+				<c:param name="workoutId" value="${tempWorkout.id}" />
+			</c:url>
+			<li>${tempWorkout.name} - ${tempWorkout.type} <a href="${detailLink }">Details</a></li>
+			
 		</c:forEach>
 	</ul>
 

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alexmonjaraz.workoutapp.entities.Workout;
+import com.alexmonjaraz.workoutapp.entities.WorkoutSet;
 
 @Repository
 public class WorkoutDAOImpl implements WorkoutDAO {
@@ -43,6 +44,17 @@ public class WorkoutDAOImpl implements WorkoutDAO {
 		Query<Workout> query= session.createQuery("from Workout", Workout.class);
 		List<Workout> workouts = query.getResultList();
 		return workouts;
+	}
+
+	@Transactional
+	@Override
+	public List<WorkoutSet> getWorkoutSets(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Workout foundWorkout = session.get(Workout.class, id);
+		List<WorkoutSet> workoutSets = foundWorkout.getSets();
+
+		return workoutSets;
 	}
 
 }
