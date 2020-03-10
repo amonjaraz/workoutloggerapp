@@ -30,7 +30,7 @@
 
 	
 	
-	<form:form action="user/addWorkout" method="GET">
+	<form:form action="addWorkout" method="GET">
 		<button type="submit" >Add Workout</button>
 	</form:form>
 	

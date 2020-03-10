@@ -93,7 +93,7 @@
 	</div>
 
 
-	<a href="/user">user</a>
+	<a href=".">user</a>
 	
     <div style="width: 600px;">
         <div id="curve_chart_weight"></div>
