@@ -36,6 +36,10 @@ public class WorkoutSet {
 	@Column(name="created")
 	private Date created;
 	
+	@ManyToOne
+	@JoinColumn(name="workout_id")
+	private Workout workout;
+	
 	@PrePersist
 	protected void onCreate() {
 		created = new Date();
@@ -80,6 +84,14 @@ public class WorkoutSet {
 
 	public Date getCreated() {
 		return created;
+	}
+
+	public Workout getWorkout() {
+		return workout;
+	}
+
+	public void setWorkout(Workout workout) {
+		this.workout = workout;
 	}
 	
 }

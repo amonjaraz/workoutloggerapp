@@ -36,8 +36,7 @@ public class Workout {
 	@Column(name="type")
 	private String type;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="workout_id")
+	@OneToMany(mappedBy="workout", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<WorkoutSet> sets;
 	
 	public Workout() {}
@@ -47,6 +46,8 @@ public class Workout {
 			sets = new ArrayList<WorkoutSet>();
 		}
 		sets.add(newSet);
+		
+		newSet.setWorkout(this);
 	}
 
 	public Workout(String note) {

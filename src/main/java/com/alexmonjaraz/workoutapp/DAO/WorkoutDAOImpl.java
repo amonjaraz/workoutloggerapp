@@ -34,6 +34,7 @@ public class WorkoutDAOImpl implements WorkoutDAO {
 	@Override
 	public void saveWorkout(@Valid Workout workout) {
 		Session session = sessionFactory.getCurrentSession();
+		System.out.println("SAVE:" + workout.getSets());
 		session.saveOrUpdate(workout);
 	}
 

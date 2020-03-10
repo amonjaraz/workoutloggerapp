@@ -50,6 +50,14 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/user/editWorkout")
+	private String editWorkout(@RequestParam("workoutId") int workoutId, Model model) {
+		Workout workout = workoutDAO.getWorkout(workoutId);
+		model.addAttribute("workout", workout);
+		
+		return "add-workout";
+	}
+	
 	@PostMapping("/user/saveWorkout")
 	private String saveWorkout(@Valid @ModelAttribute("workout") Workout workout, 
 								BindingResult bindingResult) {
