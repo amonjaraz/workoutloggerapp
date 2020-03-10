@@ -68,6 +68,9 @@ public class UserController {
 		Workout workout = workoutDAO.getWorkout(workoutId);
 		model.addAttribute("workout", workout);
 		
+		List<WorkoutSet> workoutSets = workoutDAO.getWorkoutSets(workoutId);
+		model.addAttribute("workoutSets", workoutSets);
+		
 		WorkoutSet workoutSet = new WorkoutSet();
 		
 		

@@ -21,7 +21,13 @@
 			<button type="submit" >Add Set</button>
 		</form:form>
 	</div>
+	<ul>
+		<c:forEach var="workoutSet" items="${workoutSets}">
+			<li>${workoutSet.weight} | ${workoutSet.quantity}</li>
+		</c:forEach>
+	</ul>
 
+	<a href="/user">user</a>
 	
 </body>
 </html>
