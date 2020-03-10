@@ -105,11 +105,20 @@
         <div id="curve_chart_quantity_weight"></div>
     </div>
     
-   	<ul>
+   	<table>
+ 			<tr>
+				<th>Date</th>
+				<th>Weight</th>
+				<th>Reps</th>
+			</tr>
 		<c:forEach var="workoutSet" items="${workoutSets}">
-			<li>${workoutSet.weight} | ${workoutSet.quantity} | ${workoutSet.created }</li>
+			<tr>
+				<td>${workoutSet.created}</td>
+				<td>${workoutSet.weight} </td>
+				<td>${workoutSet.quantity} </td>
+			</tr>
 		</c:forEach>
-	</ul>
+	</table>
 	
 </body>
 </html>
