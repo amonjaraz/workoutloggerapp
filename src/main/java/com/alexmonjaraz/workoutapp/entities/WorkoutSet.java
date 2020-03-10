@@ -1,6 +1,8 @@
 package com.alexmonjaraz.workoutapp.entities;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="workout_set")
@@ -27,7 +32,14 @@ public class WorkoutSet {
 	private double weight;
 	
 	
-//	private Date date;
+	@Temporal(TemporalType.DATE)
+	@Column(name="created")
+	private Date created;
+	
+	@PrePersist
+	protected void onCreate() {
+		created = new Date();
+	}
 	
 	public WorkoutSet() {}
 
@@ -64,6 +76,10 @@ public class WorkoutSet {
 	@Override
 	public String toString() {
 		return "WorkoutSet [id=" + id + ", quantity=" + quantity + ", weight=" + weight + "]";
+	}
+
+	public Date getCreated() {
+		return created;
 	}
 	
 }

@@ -23,7 +23,7 @@
 	</div>
 	<ul>
 		<c:forEach var="workoutSet" items="${workoutSets}">
-			<li>${workoutSet.weight} | ${workoutSet.quantity}</li>
+			<li>${workoutSet.weight} | ${workoutSet.quantity} | ${workoutSet.created }</li>
 		</c:forEach>
 	</ul>
 
