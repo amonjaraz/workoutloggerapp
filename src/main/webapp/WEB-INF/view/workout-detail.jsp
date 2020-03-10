@@ -7,7 +7,77 @@
 <html>
 <head>
 
-<title>User Dash</title>
+	<title>User Dash</title>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	     google.charts.load('current', {'packages':['corechart']});
+	     google.charts.setOnLoadCallback(drawWeightChart);
+	     google.charts.setOnLoadCallback(drawQuantityChart);
+	     google.charts.setOnLoadCallback(drawWeightQuantityChart);
+	     function drawWeightChart() {
+	       var data = google.visualization.arrayToDataTable([
+	         ['Year', 'Sales'],
+	         <c:forEach var="workoutSet" items="${workoutSets}">
+	         	[new Date("${workoutSet.created}"), ${workoutSet.weight}],
+	         </c:forEach>
+
+	       ]);
+	
+	       var options = {
+	         title: 'Weight Over Time',
+	         curveType: 'function',
+	         legend: 'none',
+	          hAxis: {title: 'Reps'},
+	          vAxis: {title: 'Weight'},
+	       };
+	
+	       var chart = new google.visualization.ScatterChart(document.getElementById('curve_chart_weight'));
+	
+	       chart.draw(data, options);
+	     }
+	     function drawQuantityChart() {
+		       var data = google.visualization.arrayToDataTable([
+		         ['Year', 'Sales'],
+		         <c:forEach var="workoutSet" items="${workoutSets}">
+		         	[new Date("${workoutSet.created}"), ${workoutSet.quantity}],
+		         </c:forEach>
+
+		       ]);
+		
+		       var options = {
+		         title: 'Reps Over Time',
+		         curveType: 'function',
+		         legend: 'none',
+		          hAxis: {title: 'Date'},
+		          vAxis: {title: 'Reps'},
+		       };
+		
+		       var chart = new google.visualization.ScatterChart(document.getElementById('curve_chart_quantity'));
+		
+		       chart.draw(data, options);
+		     }
+	     function drawWeightQuantityChart() {
+		       var data = google.visualization.arrayToDataTable([
+		         ['quantity', 'weight'],
+		         <c:forEach var="workoutSet" items="${workoutSets}">
+		         	[ ${workoutSet.quantity}, ${workoutSet.weight}],
+		         </c:forEach>
+
+		       ]);
+		
+		       var options = {
+		         title: 'Quantity V Weight',
+		         curveType: 'function',
+		         legend: 'none',
+		          hAxis: {title: 'Reps'},
+		          vAxis: {title: 'Weight'},
+		       };
+		
+		       var chart = new google.visualization.ScatterChart(document.getElementById('curve_chart_quantity_weight'));
+		
+		       chart.draw(data, options);
+		     }
+	   </script>
 </head>
 <body>
 	<h1>Workout Details</h1>
@@ -21,13 +91,25 @@
 			<button type="submit" >Add Set</button>
 		</form:form>
 	</div>
-	<ul>
+
+
+	<a href="/user">user</a>
+	
+    <div style="width: 600px;">
+        <div id="curve_chart_weight"></div>
+    </div>
+    <div style="width: 600px;">
+        <div id="curve_chart_quantity"></div>
+    </div>
+    <div style="width: 600px;">
+        <div id="curve_chart_quantity_weight"></div>
+    </div>
+    
+   	<ul>
 		<c:forEach var="workoutSet" items="${workoutSets}">
 			<li>${workoutSet.weight} | ${workoutSet.quantity} | ${workoutSet.created }</li>
 		</c:forEach>
 	</ul>
-
-	<a href="/user">user</a>
 	
 </body>
 </html>
