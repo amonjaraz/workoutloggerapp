@@ -23,7 +23,10 @@
 			<c:url var="detailLink" value="/user/workout">
 				<c:param name="workoutId" value="${tempWorkout.id}" />
 			</c:url>
-			<li>${tempWorkout.name} - ${tempWorkout.type} <a href="${detailLink }">Details</a></li>
+			<c:url var="editLink" value="/user/editWorkout">
+				<c:param name="workoutId" value="${tempWorkout.id}" />
+			</c:url>
+			<li>${tempWorkout.name} - ${tempWorkout.type} <a href="${detailLink }">Details</a>|<a href="${editLink }">Edit</a></li>
 			
 		</c:forEach>
 	</ul>
