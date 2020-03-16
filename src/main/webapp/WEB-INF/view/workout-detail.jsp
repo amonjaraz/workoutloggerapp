@@ -8,6 +8,10 @@
 <head>
 
 	<title>User Dash</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
 	     google.charts.load('current', {'packages':['corechart']});
@@ -80,45 +84,49 @@
 	   </script>
 </head>
 <body>
-	<h1>Workout Details</h1>
-	<h2>${workout.name} - ${workout.type }</h2>
-	<br/>
-	<div>
-		<form:form action="workout/addSet?workoutId=${workout.id}"  modelAttribute="workoutSet" method="post">
-			
-			weight <form:input path="weight"/>
-			quanity <form:input path="quantity"/>
-			<button type="submit" >Add Set</button>
-		</form:form>
+	<%@ include file="common/navigation.jspf" %>
+	<div class="container">
+		
+		<h1>Workout Details</h1>
+		<h2>${workout.name} - ${workout.type }</h2>
+		<br/>
+		<div class="row">
+			<div class="col-md-4">
+				<form:form action="workout/addSet?workoutId=${workout.id}"  modelAttribute="workoutSet" method="post">
+					<div class="form-group">
+					<label>Weight</label> <form:input path="weight" class="form-control"/>
+					<label>Reps</label> <form:input path="quantity" class="form-control"/>
+					</div>
+					
+					<button class="btn btn-primary" type="submit" >Add Set</button>
+				</form:form>
+			</div>
+		</div>
+		
+	    <div style="width: 100%;">
+	        <div id="curve_chart_weight"></div>
+	    </div>
+	    <div style="width: 100%;">
+	        <div id="curve_chart_quantity"></div>
+	    </div>
+	    <div style="width: 100%;">
+	        <div id="curve_chart_quantity_weight"></div>
+	    </div>
+	    <br/>
+	   	<table class="table table-bordered">
+	 			<tr>
+					<th>Date</th>
+					<th>Weight</th>
+					<th>Reps</th>
+				</tr>
+			<c:forEach var="workoutSet" items="${workoutSets}">
+				<tr>
+					<td>${workoutSet.created}</td>
+					<td>${workoutSet.weight} </td>
+					<td>${workoutSet.quantity} </td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
-
-
-	<a href=".">user</a>
-	
-    <div style="width: 600px;">
-        <div id="curve_chart_weight"></div>
-    </div>
-    <div style="width: 600px;">
-        <div id="curve_chart_quantity"></div>
-    </div>
-    <div style="width: 600px;">
-        <div id="curve_chart_quantity_weight"></div>
-    </div>
-    
-   	<table>
- 			<tr>
-				<th>Date</th>
-				<th>Weight</th>
-				<th>Reps</th>
-			</tr>
-		<c:forEach var="workoutSet" items="${workoutSets}">
-			<tr>
-				<td>${workoutSet.created}</td>
-				<td>${workoutSet.weight} </td>
-				<td>${workoutSet.quantity} </td>
-			</tr>
-		</c:forEach>
-	</table>
-	
 </body>
 </html>
