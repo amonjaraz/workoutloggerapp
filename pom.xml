@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.luv2code</groupId>
-	<artifactId>spring-security-demo</artifactId>
+	<groupId>com.alexmonjaraz</groupId>
+	<artifactId>workout-app</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>spring-security-demo</name>
+	<name>workout-app</name>
 
 	<properties>
 		<springframework.version>5.2.3.RELEASE</springframework.version>
@@ -132,7 +132,7 @@
 
 	<!-- TO DO: Add support for Maven WAR Plugin -->
 	<build>
-		<finalName>spring-security-demo</finalName>
+		<finalName>workout-app</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
