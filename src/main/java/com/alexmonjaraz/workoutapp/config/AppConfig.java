@@ -29,7 +29,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan(basePackages="com.alexmonjaraz.workoutapp")
-@PropertySource("classpath:persistence-mysql.properties")
+@PropertySource("classpath:persistence-postgresql.properties")
 public class AppConfig implements WebMvcConfigurer {
 
 	@Autowired
@@ -55,7 +55,7 @@ public class AppConfig implements WebMvcConfigurer {
 		 ComboPooledDataSource myDataSource = new ComboPooledDataSource();
 		 // set the jdbc driver
 		 try {
-		 myDataSource.setDriverClass("com.mysql.jdbc.Driver");
+		 myDataSource.setDriverClass(env.getProperty("jdbc.driver"));
 		 }
 		 catch (PropertyVetoException exc) {
 		 throw new RuntimeException(exc);

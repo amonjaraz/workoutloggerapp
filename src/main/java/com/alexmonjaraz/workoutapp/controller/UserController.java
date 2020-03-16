@@ -64,7 +64,7 @@ public class UserController {
 		}
 		else {
 			workoutDAO.saveWorkout(workout);
-			return "redirect:/user";
+			return "redirect:/user/";
 		}
 	}
 	
