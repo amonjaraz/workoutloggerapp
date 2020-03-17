@@ -33,6 +33,7 @@ public class UserController {
 	private String getUser(Model model, Authentication auth) {
 
 		List<Workout> workouts = workoutDAO.getWorkouts();
+		workouts.sort(( x, y) -> x.getName().compareTo(y.getName()));
 		model.addAttribute("workouts", workouts);
 		return "user";
 		
