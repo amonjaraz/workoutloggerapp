@@ -19,7 +19,7 @@
 		
 		<h1>Add Workout</h1>
 		<div>
-			<p>Username: <security:authentication  property="principal.username" /></p>
+			<h4>Username: <security:authentication  property="principal.username" /> </h4>
 		</div>
 		<div class="row">
 			<div class="col-md-4  ">

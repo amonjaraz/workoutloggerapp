@@ -31,7 +31,6 @@ public class UserController {
 	
 	@GetMapping("/user")
 	private String getUser(Model model, Authentication auth) {
-
 		List<Workout> workouts = workoutDAO.getWorkouts();
 		workouts.sort(( x, y) -> x.getName().compareTo(y.getName()));
 		model.addAttribute("workouts", workouts);
@@ -88,13 +87,13 @@ public class UserController {
 
 			@RequestParam("workoutId") int workoutId,
 			BindingResult bindingResult) {
-
 		if (bindingResult.hasErrors()) {
 			return "workout-detail";
 		}
 		else {
 			Workout workout = workoutDAO.getWorkout(workoutId);
 			workout.addSet(workoutSet);
+			System.out.println(workout);
 			workoutDAO.saveWorkout(workout);
 			return "redirect:/user/workout?workoutId="+workoutId;
 		}
